@@ -1,3 +1,4 @@
+const store = require('./store');
 var ctrl = {}
 
 ctrl.addMessage = (user, message) => {
@@ -15,10 +16,16 @@ ctrl.addMessage = (user, message) => {
             date: new Date()
         };
     
-        console.log(fullMessage);
+        store.addMessage(fullMessage);
         resolve(fullMessage);
     });
 
+}
+
+ctrl.getMessage = () => {
+    return new Promise ((resolve, reject) => {
+        resolve(store.getMessage());
+    });
 }
 
 module.exports = ctrl;
