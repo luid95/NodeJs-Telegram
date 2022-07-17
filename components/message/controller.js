@@ -22,9 +22,9 @@ ctrl.addMessage = (user, message) => {
 
 }
 
-ctrl.getMessage = () => {
+ctrl.getMessage = (filterUser) => {
     return new Promise ((resolve, reject) => {
-        resolve(store.getMessage());
+        resolve(store.getMessage(filterUser));
     });
 }
 

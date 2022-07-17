@@ -21,9 +21,13 @@ st.addMessage = (message) => {
 
 } 
 
-st.getMessage = async () =>{
+st.getMessage = async (filterUser) =>{
     // return list;
-    const messages = await Model.find();
+    const filter = {};
+    if(filterUser !== null){
+        filter - { user: filterUser}
+    }
+    const messages = await Model.find(filter);
     return messages;
 }
 

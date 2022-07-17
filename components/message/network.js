@@ -6,7 +6,8 @@ const router = express.Router();
 //Obtener listado de mensajes
 router.get('/', (req, res) => {
 
-    controller.getMessage()
+    const filterMessages = req.query.user || null;
+    controller.getMessage(filterMessages)
         .then((messageList) => {
             response.success(req, res, messageList, 200);
         })
