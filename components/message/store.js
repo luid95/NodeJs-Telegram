@@ -1,19 +1,8 @@
-const db = require('mongoose');
 const Model = require('./model');
-
-const url = 'mongodb+srv://luid95:luid95@cluster0.zzlkv.mongodb.net/telegram?retryWrites=true&w=majority';
-
-db.Promise = global.Promise;
-db.connect(url, { 
-    useNewUrlParser: true, 
-    useUnifiedTopology: true 
-})
-  .then(() => console.log('[db] Conectada con éxito'))
-  .catch(err => console.error('[db]', err));
-
 
 const st = {};
 
+//Agregar mensajes
 st.addMessage = (message) => {
     // list.push(message);
     const myMessage = new Model(message);
@@ -21,6 +10,7 @@ st.addMessage = (message) => {
 
 } 
 
+//Leer mensajes
 st.getMessage = async (filterUser) =>{
     // return list;
     const filter = {};
@@ -31,6 +21,7 @@ st.getMessage = async (filterUser) =>{
     return messages;
 }
 
+//Actualizar un mensaje
 st.updateText = async (id, message) =>{
     
     const foundMessage = await Model.findOne({
@@ -42,6 +33,13 @@ st.updateText = async (id, message) =>{
 
     return newMessage;
 
+}
+
+//Eliminar un mensaje
+st.remove = (id) => {
+    Model.deleteOne({
+        _id: id
+    });
 }
 
 module.exports = st;

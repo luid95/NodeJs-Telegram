@@ -43,4 +43,23 @@ ctrl.updateMessage = (id, message) => {
     });
 }
 
+ctrl.deleteMessage = (id) => {
+    return new Promise ( (resolve, reject) => {
+        
+        if(!id ){
+            reject('Id Invalid');
+            return false;
+        }
+
+        store.remove(id)
+            .then(() => {
+                resolve();
+            })
+            .catch(err => {
+                reject(err);
+            })
+
+    });
+}
+
 module.exports = ctrl;

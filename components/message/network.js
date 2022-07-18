@@ -42,4 +42,15 @@ router.patch('/:id', (req, res) => {
 
 });
 
+//Eliminar un registro de mensaje
+router.delete('/:id', (req, res) => {
+    controller.deleteMessage(req.params.id)
+        .then(()=> {
+            response.success(req, res, `Usuario ${req.params.id} eliminado`, 200);
+        })
+        .catch(e => {
+            response.error(req, res, 'Error interno', 500, e);
+        });
+});
+
 module.exports = router;
