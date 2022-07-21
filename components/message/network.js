@@ -1,7 +1,12 @@
 const express = require('express');
+const multer = require('multer');
 const response = require('../../network/response');
 const controller = require('./controller');
 const router = express.Router();
+
+const upload = multer({
+    dest: 'uploads/',
+});
 
 //Obtener listado de mensajes
 router.get('/', (req, res) => {
@@ -17,7 +22,7 @@ router.get('/', (req, res) => {
 });
 
 //Crear un nuevo mensaje
-router.post('/', (req, res) => {
+router.post('/', upload.single('file'), (req, res) => {
     
     controller.addMessage(req.body.chat, req.body.user, req.body.message)
         .then((fullMessage) =>{
