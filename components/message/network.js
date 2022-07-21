@@ -6,7 +6,7 @@ const router = express.Router();
 //Obtener listado de mensajes
 router.get('/', (req, res) => {
 
-    const filterMessages = req.query.user || null;
+    const filterMessages = req.query.chat || null;
     controller.getMessage(filterMessages)
         .then((messageList) => {
             response.success(req, res, messageList, 200);
@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 //Crear un nuevo mensaje
 router.post('/', (req, res) => {
     
-    controller.addMessage(req.body.user, req.body.message)
+    controller.addMessage(req.body.chat, req.body.user, req.body.message)
         .then((fullMessage) =>{
             response.success(req, res, fullMessage, 201);
         })

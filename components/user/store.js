@@ -17,25 +17,4 @@ stu.getUsers =  () =>{
     return users;
 }
 
-// //Actualizar un mensaje
-// st.updateText = async (id, message) =>{
-    
-//     const foundMessage = await Model.findOne({
-//         _id: id
-//     });
-    
-//     foundMessage.message = message;
-//     const newMessage = await foundMessage.save();
-
-//     return newMessage;
-
-// }
-
-// //Eliminar un mensaje
-// st.remove = (id) => {
-//     Model.deleteOne({
-//         _id: id
-//     });
-// }
-
 module.exports = stu;

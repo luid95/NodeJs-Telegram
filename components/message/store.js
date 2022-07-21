@@ -12,13 +12,26 @@ st.addMessage = (message) => {
 
 //Leer mensajes
 st.getMessage = async (filterUser) =>{
-    // return list;
-    const filter = {};
-    if(filterUser !== null){
-        filter - { user: filterUser}
-    }
-    const messages = await Model.find(filter);
-    return messages;
+    return new Promise((resolve, reject) =>{
+
+        const filter = {};
+        if(filterUser !== null){
+            filter - { user: filterUser}
+        }
+        const messages = await Model.find(filter)
+            .populate('user')
+            .exec((error, populated) => {
+                if(error){
+                    reject(error);
+                    return false;
+                }
+
+                resolve(populated);
+
+            });
+
+    });
+    
 }
 
 //Actualizar un mensaje
