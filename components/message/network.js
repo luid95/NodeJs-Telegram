@@ -1,12 +1,14 @@
 const express = require('express');
 const multer = require('multer');
+
+const config = require('../../config');
 const response = require('../../network/response');
 const controller = require('./controller');
 const router = express.Router();
 
 //Preparacion de multer para almacenar archivos
 const upload = multer({
-    dest: 'public/files/',
+    dest: 'public/'+config.filesRoute+'/',
 });
 
 //Obtener listado de mensajes
